@@ -1,0 +1,22 @@
+---
+- name: Edit ISO grub.cfg to enable autoinstall kernel parameter.
+  replace:
+    path: "{{ install_dir }}/iso/boot/grub/grub.cfg"
+    regexp: '/casper/vmlinuz'
+    replace: '/casper/vmlinuz quiet autoinstall ds=nocloud\;s=/cdrom/server/'
+
+- name: Make directory for user-data/meta-data files.
+  file:
+    path: "{{ install_dir }}/iso/server"
+    state: directory
+
+- name: Make empty meta-data file.
+  file:
+    path: "{{ install_dir }}/iso/server/meta-data"
+    state: touch
+
+- name: Copy user-data file from this directory to ../iso/server.
+  template:
+    src: templates/user-data.j2
+    dest: "{{ install_dir }}/iso/server/user-data"
+

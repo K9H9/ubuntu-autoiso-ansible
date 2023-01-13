@@ -1,0 +1,20 @@
+---
+- name: Run main playbook.
+  hosts: localhost
+  connection: local
+  vars_files: defaults/main.yml
+  tasks:
+  - name: Install dependencies and create directory for the installation.
+    include_tasks: tasks/dependencies.yml
+
+  - name: Download newest Ubuntu server 22.04 iso and verify it.
+    include_tasks: tasks/download_iso.yml
+    
+  - name: Prepare ISO (extract and modify files).
+    include_tasks: tasks/extract_iso.yml
+
+  - name: Edit grub files.
+    include_tasks: tasks/edit_files.yml
+
+  - name: Generate ISO.
+    include_tasks: tasks/generate_iso.yml

@@ -1,0 +1,56 @@
+---
+
+- name: Download sha256 checksum.
+  get_url:
+    url: "https://cdimage.ubuntu.com/ubuntu-server/jammy/daily-live/current/SHA256SUMS"
+    dest: "{{ install_dir }}"
+
+- name: Grep correct checksum.
+  shell:
+    cmd: "grep amd64.iso '{{ install_dir }}/SHA256SUMS' | cut -d ' ' -f1"
+  changed_when: false
+  register: sha256sum
+
+# - name: Download iso.
+#   get_url: 
+#     url: "https://cdimage.ubuntu.com/ubuntu-server/jammy/daily-live/current/jammy-live-server-amd64.iso"
+#     dest: "/tmp/ubuntu-autoinstall/jammy-live-server-amd64.iso"
+#     checksum: "sha256:{{ sha256sum.stdout }}"
+#
+- name: Get gpg keys.
+  get_url:
+    url: "https://cdimage.ubuntu.com/ubuntu-server/jammy/daily-live/current/SHA256SUMS.gpg"
+    dest: "{{ install_dir }}"
+- name: Ensure dirmngr is running for gpg keys.
+  shell: 
+    cmd: "pgrep dirmngr"
+  failed_when: false
+  changed_when: false
+  register: dirmngr_state
+
+- name: Start dirmgnr if not running.
+  shell:
+    cmd: "dirmngr --daemon"
+  when: dirmngr_state.rc != 0
+
+- name: Import the GPG key
+  shell:
+    cmd: "gpg -q --no-default-keyring --keyring '{{ install_dir }}/843938DF228D22F7B3742BC0D94AA3F0EFE21092.keyring' --keyserver 'hkp://keyserver.ubuntu.com' --recv-keys 843938DF228D22F7B3742BC0D94AA3F0EFE21092"
+    creates:
+     - "{{ install_dir }}/843938DF228D22F7B3742BC0D94AA3F0EFE21092.keyring"
+     - "{{ install_dir }}/843938DF228D22F7B3742BC0D94AA3F0EFE21092.keyring~"
+  ignore_errors: yes
+
+- name: Verify the GPG key
+  shell:
+    cmd: "gpg -q --keyring '{{ install_dir }}/843938DF228D22F7B3742BC0D94AA3F0EFE21092.keyring' --verify '{{ install_dir }}/SHA256SUMS.gpg'  '{{ install_dir }}/SHA256SUMS' 2>/dev/null"
+  ignore_errors: yes
+
+- name: Stop dirmngr.
+  shell:
+    cmd: "pkill dirmngr"
+  when: dirmngr_state.rc != 0
+
+
+
+

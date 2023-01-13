@@ -1,0 +1,25 @@
+---
+- name: Make Folder for ISO extraction.
+  file:
+    path: "{{ install_dir }}/iso"
+    state: directory
+
+- name: Extract downloaded ISO. 
+  shell:
+    cmd: "7z -y x '{{ install_dir }}/jammy-live-server-amd64.iso' '-o{{ install_dir }}/iso'"
+- name: Make BOOT directory.
+  file:
+    path: '{{ install_dir }}/BOOT'
+    state: directory
+- name: Copy BOOT files.
+  copy:
+    src: '{{ install_dir }}/iso/[BOOT]/{{ item }}-Boot-NoEmul.img'
+    dest: '{{ install_dir }}/BOOT/{{ item }}-Boot-NoEmul.img'
+  with_items:
+    - "1"
+    - "2"
+    
+- name: Remove ['BOOT'] directory from iso directory.
+  file: 
+    path: "{{ install_dir }}/iso/[BOOT]"
+    state: absent

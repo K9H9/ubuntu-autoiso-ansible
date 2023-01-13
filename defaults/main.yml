@@ -1,0 +1,8 @@
+---
+install_dir: "./ubuntu-autoiso"
+username: "ubuntu"
+password: "ubuntu"
+hostname: "ubuntu-live-autoinstall"
+locale: "en-us.UTF-8"
+kb_layout: "fi"
+

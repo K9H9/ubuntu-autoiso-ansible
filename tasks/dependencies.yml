@@ -1,0 +1,16 @@
+---
+- name: Install dependencies.
+  become: true
+  package:
+    name: 
+      - p7zip-full
+      - xorriso
+    state: present
+
+- name: Make temporary directory for installation.
+  file: 
+    path: "{{ install_dir }}"
+    state: directory
+
+
+
