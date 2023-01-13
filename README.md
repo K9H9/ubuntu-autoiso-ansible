@@ -3,7 +3,7 @@ This ansible playbook downloads newest Ubuntu server 22.04 from official repo an
 It is based on notthebee's [ansible-role-ubuntu_autoinstall](https://github.com/notthebee/ansible-role-ubuntu_autoinstall) which uses Ubuntu 20.04 LTS and has option to upload it to pikvm for even more automated installation. This one is playbook, although it's quite easy to convert this to role.
 
 ### Usage
-First cone this repo
+First clone this repo
 
 ```
 git clone https://github.com/K9H9/ubuntu-autoiso-ansible
