@@ -14,9 +14,8 @@
 - name: Download iso.
   get_url: 
     url: "https://cdimage.ubuntu.com/ubuntu-server/jammy/daily-live/current/jammy-live-server-amd64.iso"
-    dest: "/tmp/ubuntu-autoinstall/jammy-live-server-amd64.iso"
+    dest: "{{ install_dir }}/jammy-live-server-amd64.iso"
     checksum: "sha256:{{ sha256sum.stdout }}"
-    force: yes
 - name: Get gpg keys.
   get_url:
     url: "https://cdimage.ubuntu.com/ubuntu-server/jammy/daily-live/current/SHA256SUMS.gpg"
@@ -27,6 +26,7 @@
   failed_when: false
   changed_when: false
   register: dirmngr_state
+
 
 - name: Start dirmgnr if not running.
   shell:

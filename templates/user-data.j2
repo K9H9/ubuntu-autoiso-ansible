@@ -3,7 +3,7 @@ autoinstall:
   version: 1
   identity:
     hostname: {{ hostname }}
-    password: {{ password }} 
+    password: {{ password | password_hash('sha512') }}
     username: {{ username }}
   locale: {{ locale }}
   refresh-installer:
@@ -12,6 +12,5 @@ autoinstall:
     layout: {{ kb_layout }}
   ssh:
     install-server: true
-    allow-pw: true
-   
+    allow-pw: true 
 
