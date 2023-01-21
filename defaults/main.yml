@@ -1,8 +1,8 @@
 ---
 install_dir: "./ubuntu-autoiso"
-username: "ubuntu"
-password: "ubuntu"
-hostname: "ubuntu-live-autoinstall"
+username: "koho"
+hostname: "homeserver"
 locale: "en-us.UTF-8"
 kb_layout: "fi"
-boot_drive_serial: "KINGSTON_SNV2S1000G_50026B7784E22ACD"
+ssh_keyfile: "/home/koho/.ssh/id_ed25519_homeserver"
+ssh_keyfile_public: "/home/koho/.ssh/id_ed25519_homeserver.pub"

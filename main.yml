@@ -2,10 +2,15 @@
 - name: Run main playbook.
   hosts: localhost
   connection: local
-  vars_files: defaults/main.yml
+  vars_files: 
+    - defaults/main.yml
+    - vault.yml
   tasks:
   - name: Install dependencies and create directory for the installation.
     include_tasks: tasks/dependencies.yml
+  
+  - name: Prepare SSH.
+    include_tasks: tasks/ssh.yml
 
   - name: Download newest Ubuntu server 22.04 iso and verify it.
     include_tasks: tasks/download_iso.yml

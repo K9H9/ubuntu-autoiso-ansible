@@ -1,5 +1,4 @@
 ---
-
 - name: Download sha256 checksum.
   get_url:
     url: "https://cdimage.ubuntu.com/ubuntu-server/jammy/daily-live/current/SHA256SUMS"

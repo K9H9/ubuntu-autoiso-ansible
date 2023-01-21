@@ -12,5 +12,7 @@ autoinstall:
     layout: {{ kb_layout }}
   ssh:
     install-server: true
-    allow-pw: true 
+    allow-pw: false
+    authorized-keys: {{ ssh_public_key }}
+
 

@@ -1,0 +1,12 @@
+---
+- name: Make ssh key to login.
+  openssh_keypair:
+    path: "{{ ssh_keyfile }}"
+    type: ed25519
+    size: 2048
+    state: present
+    force: no
+  register: ssh_data
+
+- set_fact:
+    ssh_public_key: "{{ ssh_data.public_key }}"
