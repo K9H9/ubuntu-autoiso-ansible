@@ -6,3 +6,4 @@ locale: "en-us.UTF-8"
 kb_layout: "fi"
 ssh_keyfile: "/home/koho/.ssh/id_ed25519_homeserver"
 ssh_keyfile_public: "/home/koho/.ssh/id_ed25519_homeserver.pub"
+server_ip: 192.168.100.58

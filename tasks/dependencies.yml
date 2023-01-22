@@ -7,6 +7,10 @@
       - xorriso
     state: present
 
+- name: Install StormSSH for managaing ssh config.
+  pip:
+    name: stormssh
+
 - name: Make temporary directory for installation.
   file: 
     path: "{{ install_dir }}"

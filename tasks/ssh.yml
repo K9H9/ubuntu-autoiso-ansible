@@ -8,5 +8,15 @@
     force: no
   register: ssh_data
 
+
 - set_fact:
     ssh_public_key: "{{ ssh_data.public_key }}"
+
+- name: Make SSH config for easier login in future.
+  community.general.ssh_config:
+    user: "{{ username }}" 
+    host: "{{ hostname }}"
+    hostname: "{{ server_ip }}"
+    identity_file: "{{ ssh_keyfile_public }}"
+    port: '22'
+    state: present
