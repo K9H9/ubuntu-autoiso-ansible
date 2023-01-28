@@ -6,4 +6,6 @@ locale: "en-us.UTF-8"
 kb_layout: "fi"
 ssh_keyfile: "/home/koho/.ssh/id_ed25519_homeserver"
 ssh_keyfile_public: "/home/koho/.ssh/id_ed25519_homeserver.pub"
+ssh_port: "2222"
 server_ip: 192.168.100.58
+drive_serial: "KINGSTON_SNV2S1000G_50026B7784E22ACD"

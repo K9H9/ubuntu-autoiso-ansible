@@ -1,6 +1,6 @@
 ## Ubuntu autoinstall ISO generated with ansible
 This ansible playbook downloads newest Ubuntu server 22.04 from official repo and generates cloud-init autoinstall ISO with ```user-data``` file that contains the specifications for installation. Then it can be flashed to usb to continue installation.
-It is based on notthebee's [ansible-role-ubuntu_autoinstall](https://github.com/notthebee/ansible-role-ubuntu_autoinstall) which uses Ubuntu 20.04 LTS and has option to upload it to pikvm for even more automated installation. This one is playbook, although it's quite easy to convert this to role.
+This one is playbook, although it's quite easy to convert this to role.
 
 ### Usage
 First clone this repo

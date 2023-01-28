@@ -12,11 +12,24 @@
 - set_fact:
     ssh_public_key: "{{ ssh_data.public_key }}"
 
+
+- name: Delete previous SSH configs.
+  community.general.ssh_config:
+    ssh_config_file: "/home/{{ username }}/.ssh/config"
+    host: "{{ server_ip }}"
+    state: absent
+
+- name: Modify known_hosts so it doesn't have data from older connections.
+  known_hosts:
+    name: "{{ server_ip }}"
+    path: "/home/{{ username }}/.ssh/known_hosts"
+    state: absent
+
 - name: Make SSH config for easier login in future.
   community.general.ssh_config:
     user: "{{ username }}" 
     host: "{{ hostname }}"
     hostname: "{{ server_ip }}"
     identity_file: "{{ ssh_keyfile_public }}"
-    port: '22'
+    port: "{{ ssh_port }}" ## Note this is using non-default port that is only configured in different playbook. This won't work after installation. 
     state: present
