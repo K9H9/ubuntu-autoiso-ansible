@@ -18,4 +18,3 @@ ansible-playbook main.yml --ask-become
 ```
 Give it some time (it might take couple of minutes since it downloads ISO which is 1,5Gb) and then the generated autoinstall ISO can be found from created directory ```ubuntu-autoiso``` in current directory. Then just flash and plug it to machine you want to install Ubuntu and let it run. After installation it can be accessed with ssh with normal user.
 
-Make sure to configure your server after the installation to use atleast different password and maybe different user also. 
