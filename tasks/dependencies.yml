@@ -3,13 +3,15 @@
   become: true
   package:
     name: 
-      - p7zip-full
+      - p7zip
       - xorriso
     state: present
 
 - name: Install StormSSH for managaing ssh config.
   pip:
-    name: stormssh
+    name: 
+      - setuptools
+      - stormssh
 
 - name: Make temporary directory for installation.
   file: 
