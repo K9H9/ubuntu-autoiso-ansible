@@ -30,6 +30,6 @@
     user: "{{ username }}" 
     host: "{{ hostname }}"
     hostname: "{{ server_ip }}"
-    identity_file: "{{ ssh_keyfile_public }}"
+    identity_file: "{{ ssh_keyfile }}"
     port: "{{ ssh_port }}" ## Note this is using non-default port that is only configured in different playbook. This won't work after installation. 
     state: present
